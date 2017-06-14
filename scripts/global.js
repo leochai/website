@@ -258,7 +258,7 @@ function displayAbbreviations() {
         var key = current_abbr.lastChild.nodeValue;
         defs[key] = definition;
     }
-    alert(defs["OR"] + defs["WA"] + defs["CA"] + defs["TX"]);
+    //alert(defs["OR"] + defs["WA"] + defs["CA"] + defs["TX"]);
     var dlist = document.createElement("dl");
     for (key in defs) {
         var definition = defs[key];
@@ -281,6 +281,20 @@ function displayAbbreviations() {
     container.appendChild(header);
     container.appendChild(dlist);
 }
+
+function focusLabels() {
+    if (!document.getElementsByTagName) return false;
+    var labels = document.getElementsByTagName("label");
+    for (var i = 0; i < labels.length; i++) {
+        if (!labels[i].getAttribute("for")) continue;
+        labels[i].onclick = function () {
+            var id = this.getAttribute("for");
+            if (!document.getElementById(id)) return false;
+            var element = document.getElementById(id);
+            element.focus();
+        }
+    }
+}
 addLoadEvent(highlightPage);
 addLoadEvent(prepareSlideshow);
 addLoadEvent(prepareInternalnav);
@@ -289,3 +303,4 @@ addLoadEvent(prepareGallery);
 addLoadEvent(stripeTables);
 addLoadEvent(highlightRows);
 addLoadEvent(displayAbbreviations);
+addLoadEvent(focusLabels);
