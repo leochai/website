@@ -294,6 +294,12 @@ function focusLabels() {
             element.focus();
         }
     }
+} 
+
+function isFilled(field){
+    if(field.value.replace(' ', '').length==0)return false;
+    var placeholder = field.getAttribute("placeholder");
+    return(field.value!=placeholder);
 }
 addLoadEvent(highlightPage);
 addLoadEvent(prepareSlideshow);
